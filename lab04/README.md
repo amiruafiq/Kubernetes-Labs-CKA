@@ -134,7 +134,7 @@ Cloud based Kubernetes provides this<br>
  
  kubectl get pod | grep do
 
- kubectl apply -f do-pv2.yaml
+ kubectl apply -f do-pvc2.yaml
 
  kubectl get pod | grep do
 
@@ -147,6 +147,8 @@ Cloud based Kubernetes provides this<br>
  kubectl get pvc
 
  kubectl delete  -f do-pvc.yaml
+
+ kubectl delete  -f do-pvc2.yaml
 
 ```
 END
