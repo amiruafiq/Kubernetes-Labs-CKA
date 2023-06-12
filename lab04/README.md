@@ -99,77 +99,8 @@ kubectl get pods
 kubectl get rc
 ```
 
+
 # Lab04C
-# Step 1
-Using an NFS volume <br>
-You will be using a NFS server running on vm001 to act as a NFS server <br>
-A rc that will bring 2 pods up <br>
-Both pods will mount the NFS volume in vm001 /export dir <br>
-Data on both pod will be stored on NFS volume in vm001 /export <br>
-
-# Step 2 
- * Find the IP address of NFS Server ( vm001 )
-
-```sh 
- az vm show -d -g vm001_rg -n vm001 --query "publicIps" -o tsv
- *This is vm001 public ip address
-
- az vm show -d -g vm001_rg -n vm001 --query "privateIps" -o tsv
- *This is vm001 private address
-```
-
-
-# Step 3 
-* edit the alpine-rc-pod-nfs.yaml to include the private ip address 
-```sh
-
-vim alpine-rc-pod-nfs.yaml
-
-kubectl create -f alpine-rc-pod-nfs.yaml
-kubectl get pods | grep alpine 
-*Wait until pod is running 
-
-kubectl describe pod alpine-xxxx 
-*Look for Mounts section and Volume Sections 
-
-ssh droot@vm001_public_ip_address 
-
-droot@vm001:~$ ls -l /export/
-
-droot@vm001:~$ ls -l /export/dates.txt
-
-droot@vm001:~$ tail -f  /export/dates.txt
-*Verify both alpine pod are writing to this NFS Share
-
-droot@vm001:~$ exit
-```
-
-# Step 4 
- * Remove alpine pods 
-```sh 
-kubectl get pods | grep alpine
-
-kubectl delete -f alpine-rc-pod-nfs.yaml
-
-kubectl get pods | grep alpine
-```
-
-# Step 5
- * Verify data still retained on vm001 NFS server  
-```sh 
-ssh droot@vm001_public_ip_address 
-
-droot@vm001:~$ ls -l /export/
-
-droot@vm001:~$ ls -l /export/dates.txt
-
-droot@vm001:~$ tail -f  /export/dates.txt
-*Verify data is not updating, as we already deleted alpine pods 
-
-droot@vm001:~$ exit
-```
-
-# Lab04D
 # Step
 Using PersistentVolumes and PersistentVolumeClaims <br>
 You will create PersistentVolumes and PersistentVolumeClaims <br>
@@ -195,7 +126,7 @@ kubectl create -f web2-pod-pvc-2.yaml
 
 ```
 
-# Lab04E
+# Lab04D
 # Step
 Using Dynamic provisioning of PersistentVolumes<br>
 In order to use Dynamic provisioning, you need to use a provisioner <br>
