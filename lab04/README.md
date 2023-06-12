@@ -121,9 +121,9 @@ Cloud based Kubernetes provides this<br>
  kubectl get pvc
  
  kubectl exec -it do-app -- sh
- # df -h /var/nfs
- # ls -l /var/nfs
- # cat /var/nfs/do-app.txt
+ # df -h /var/dodisk
+ # ls -l /var/dodisk
+ # cat /var/dodisk/do-app.txt
  # exit 
 
  kubectl delete -f do-pod-pvc.yaml
@@ -139,8 +139,8 @@ Cloud based Kubernetes provides this<br>
  kubectl get pod | grep do
 
  kubectl exec -it do-app2 -- sh
-  # df -h /var/nfs
-  # ls -l /var/nfs
+  # df -h /var/dodisk
+  # ls -l /var/dodisk
   # exit 
  
  kubectl delete -f do-pod-pvc-2.yaml
