@@ -89,13 +89,18 @@ kubectl get svc
 # Lab03D
 # Step 1
 
-* Verify Ingress Controller and Azure DNS entries 
+* Install and Verify Nginx Ingress Controller 
 ```sh
-kubectl get pod -A  | grep ingress
-*Under Azure, you will see addon-http-application-routing-nginx-ingress-controller ( cloud provided )
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
-az aks show --resource-group aks_rg --name aks_lab  --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
-*This is your Public DNS address
+helm repo update
+
+helm install nginx-ingress ingress-nginx/ingress-nginx --set controller.publishService.enabled=true
+
+kubectl --namespace default get services -o wide  nginx-ingress-ingress-nginx-controller
+
+
+
 
 ```
 
@@ -125,7 +130,7 @@ kubectl get svc -n app1
 ```
 # Step 3 
 * Edit the app1-ingress.yaml and add your dns entry 
-* Change this entry : - host: app1.cognitoz.org  to - host: app1.<azure_dns>
+* Change this entry : - host: hw1.mywire.org  to - host: app1.<dynamic_dns>
 
 # Step 4 
 ```sh 
@@ -155,7 +160,7 @@ kubectl get svc -n app2
 ```
 # Step 6 
 * Edit the app2-ingress.yaml and add your dns entry 
-* Change this entry : - host: app2.cognitoz.org  to - host: app2.<azure_dns>
+* Change this entry : - host: hw2.mywire.org  to - host: app2.<dynamic_dns>
 
 # Step 7 
 ```sh 
