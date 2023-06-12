@@ -112,41 +112,41 @@ Cloud based Kubernetes provides this<br>
  kubectl get pv
  kubectl get pvc
  
- kubectl apply -f azure-pvc.yaml 
+ kubectl apply -f do-pvc.yaml 
  kubectl get pv
  kubectl get pvc
 
- kubectl apply -f azure-pod-pvc.yaml
+ kubectl apply -f do-pod-pvc.yaml
  kubectl get pv
  kubectl get pvc
  
- kubectl exec -it azure-app -- sh
+ kubectl exec -it do-app -- sh
  # df -h /var/nfs
  # ls -l /var/nfs
- # cat /var/nfs/azure-app.txt
+ # cat /var/nfs/do-app.txt
  # exit 
 
- kubectl delete -f azure-pod-pvc.yaml
+ kubectl delete -f do-pod-pvc.yaml
  kubectl get pvc
- kubectl get pod | grep azure-app 
+ kubectl get pod | grep do-app 
 
- kubectl apply -f azure-pod-pvc-2.yaml
+ kubectl apply -f do-pod-pvc-2.yaml
  
- kubectl get pod | grep az
+ kubectl get pod | grep do
 
- kubectl apply -f azure-pv2.yaml
+ kubectl apply -f do-pv2.yaml
 
- kubectl get pod | grep az
+ kubectl get pod | grep do
 
- kubectl exec -it azure-app2 -- sh
+ kubectl exec -it do-app2 -- sh
   # df -h /var/nfs
   # ls -l /var/nfs
   # exit 
  
- kubectl delete -f azure-pod-pvc-2.yaml
+ kubectl delete -f do-pod-pvc-2.yaml
  kubectl get pvc
 
- kubectl delete  -f azure-pvc.yaml
+ kubectl delete  -f do-pvc.yaml
 
 ```
 END

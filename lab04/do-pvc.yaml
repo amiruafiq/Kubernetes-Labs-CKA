@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: azure-disk-15g
+  name: do-disk-2g
 spec:
   accessModes:
   - ReadWriteOnce
-  storageClassName: default
+  storageClassName: do-block-storage
   resources:
     requests:
-      storage: 15Gi    
+      storage: 2Gi

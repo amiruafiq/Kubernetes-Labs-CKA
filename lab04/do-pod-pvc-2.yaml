@@ -1,21 +1,20 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: azure-app
+  name: do-app2
 spec:
       containers:
-      - name: azure-app
+      - name: do-app2
         image: alpine
-        imagePullPolicy: IfNotPresent
         volumeMounts:
           - name: my-data
-            mountPath: /var/nfs
+            mountPath: /var/dodisk
         command: ["/bin/sh"]
-        args: ["-c", "while true; do date >> /var/nfs/azure-app.txt; sleep 20; echo azure-app>> /var/nfs/azure-app.txt; done"]
+        args: ["-c", "while true; do date >> /var/dodisk/do-app2.txt; sleep 20; echo do-app2>> /var/dodisk/do-app2.txt; done"]
         ports:
         - containerPort: 7171
           protocol: TCP
       volumes:
         - name: my-data
           persistentVolumeClaim:
-            claimName: azure-disk-2g
+            claimName: do-disk-8g
