@@ -100,8 +100,8 @@ helm install nginx-ingress ingress-nginx/ingress-nginx --set controller.publishS
 kubectl --namespace default get services -o wide  nginx-ingress-ingress-nginx-controller
 
 * create a free Dynamic DNS Account in https://www.dynu.com/
-* create 2 entry with dynamic DNS with nginx-ingress-ingress-nginx-controller public IP Address 
-* app1.<domain.name> , app2.<domain.name >
+* create 3 entry with dynamic DNS with nginx-ingress-ingress-nginx-controller public IP Address 
+* app1.<domain.name> , app2.<domain.name >  , redblue.<domain.name>(will be used on next lab)
 
 
 ```
